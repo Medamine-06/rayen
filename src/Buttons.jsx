@@ -1,13 +1,13 @@
-import pic from './assets/utilisateur.png'
-function Buttons(){
-    
+function Buttons(props){ 
+const UpdateWeek=()=>{
+    props.setweek(props.className=='buttPrevious'?prevCounter=> prevCounter - 1 :prevCounter=> prevCounter + 1);
+}
+
     return(
-    <div className='buttons-container'>
-    <button className='button'><img src={pic} alt="" /></button>
-    <button className='button'>&#8942;</button>
-    <button className='button'>&lt;</button>
-    <button className='button'>&gt;</button>
-    </div>
+     <button onClick={()=>{ UpdateWeek() }}>{props.icon}
+           
+     </button>  
+
     )
 }
 export default Buttons
