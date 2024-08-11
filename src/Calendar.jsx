@@ -4,19 +4,20 @@ import TaskDialog from './TaskDialog';
 import Textarea from './Textarea';
 
 const Calendar = (props) => {
-  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday','Sunday'];
   const today = new Date();
-  today.setDate(today.getDate() + props.week * 7);
+  today.setDate(today.getDate()+ props.week * 7);
 
-  const dates = Array.from({ length: 7 }).map(
-    (_, index) => {
-    const date = new Date(today);
+  const formatDate = (baseDate, index) => {
+    const date = new Date(baseDate);
     date.setDate(date.getDate() + index);
     return {
-      date: `${date.getDate().toString().padStart(2, '0')}.${(date.getMonth() + 1).toString().padStart(2, '0')}`,
+      date: `${date.getDate()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getFullYear().toString()}`,
       day: daysOfWeek[date.getDay()],
-          };
-    });
+    };
+  };
+
+  const dates = Array.from({ length: 7 }).map((_, index) => formatDate(today, index));
 
   const [tasks, setTasks] = useState(Array(7).fill(''));
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -33,8 +34,10 @@ const Calendar = (props) => {
     setTasks(updatedTasks);
     setIsDialogOpen(false);
   };
+  
 
   return (
+    
     <div className="calendar">
       <div className="calendar-header">
         {dates.map((dateObj, index) => (
@@ -54,7 +57,7 @@ const Calendar = (props) => {
             <Textarea value={task} onClick={() => handleOpenDialog(index)}/>
             <Textarea value={task} onClick={() => handleOpenDialog(index)}/>
             <Textarea value={task} onClick={() => handleOpenDialog(index)}/>
-            <Textarea value={task} onClick={() => handleOpenDialog(index)}/>
+            
           </div>
         ))}
       </div>

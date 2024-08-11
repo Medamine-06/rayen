@@ -4,20 +4,18 @@ import Header from './Header'
 import Footer from './Footer'
 import Calendar from './Calendar'
 import {useState} from'react'
-import { setMonth } from 'date-fns'
+
+
 
 
 function App() {
-  const [week, setweek] = useState(0);
-
-  const[MonthName,SetMonthName]=useState("January");
-
+  
+  const [week0, setweek] = useState(0);
   return (
     <>
-    <Header setweek={setweek} />
-    <Calendar week={week} />
+    <Header setweek={setweek} week={week0}/>
+    <Calendar week={week0}/>
     <Footer/>
-   
    
     </>
   )
