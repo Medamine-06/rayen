@@ -1,19 +1,18 @@
-// Buttons.jsx
-
-function Buttons(props){ 
-    
-    const updateWeekAndYear = () => {
+function Buttons(props) { 
+  const updateWeekAndYear = () => {
+    if (props.setweek) {
       props.setweek(props.className === 'buttPrevious' ? prevCounter => prevCounter - 1 : prevCounter => prevCounter + 1);
-     // props.setyear(props.className === 'buttPrevious' ? prevCounter => prevCounter - 1 : prevCounter => prevCounter + 1);  
     }
-  
-    return (
-      <button onClick={updateWeekAndYear}>
-
-        {props.icon}
-      </button>  
-    )
+    if (props.onClick) {
+      props.onClick();
+    }
   }
-  
-  export default Buttons;
-  
+
+  return (
+    <button onClick={updateWeekAndYear}>
+      {props.icon}
+    </button>  
+  )
+}
+
+export default Buttons;
