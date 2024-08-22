@@ -1,0 +1,74 @@
+/* src/components/About.css */
+.about-container {
+    position: fixed;
+    top: 5em;
+    right: -500px; 
+    width: 400px;
+    height: 100%;
+    background-color:hsla(221, 82%, 60%, 0.395);
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: right 0.3s ease-in-out;
+  }
+  
+  .about-container:hover {
+    right: 0; /* Slide in on hover */
+  }
+  
+  .about-content {
+    text-align: left;
+  }
+  
+  .about-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .about-content p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .about-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
+  .about-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .start-now {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  .log-in {
+    background-color: transparent;
+    border: 1px solid #000;
+    color: #000;
+  }
+  .hover-area {
+    position: fixed;
+    top: 5em;
+    right: 0;
+    width: 100px; /* Adjust width as needed */
+    height: 100%;
+    cursor: pointer;
+  }
+  
+  .about-container:hover,
+  .hover-area:hover + .about-container {
+    right: 0;
+  }
