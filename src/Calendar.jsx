@@ -55,7 +55,7 @@ const Calendar = (props) => {
         </tr>
       </thead>
       <tbody>
-        {Array(7).fill(0).map((_, rowIndex) => (
+        {Array(5).fill(0).map((_, rowIndex) => (
           <tr key={rowIndex} className="task-row">
             {tasks.map((dayTasks, dayIndex) => (
               <td key={dayIndex} className="task-cell">

@@ -12,6 +12,7 @@
 }
 .left {
   flex: 1;
+  font-size:x-large;
 }
 .right {
   display: flex;
@@ -52,7 +53,7 @@ color: hsla(0, 0%, 0%, 0.767);
 
 .footer {
   padding: 20px 0;
-  position: absolute;
+  position: relative;
   bottom: 0;
 }
 

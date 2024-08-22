@@ -1,74 +1,68 @@
-/* src/components/About.css */
 .about-container {
-    position: fixed;
-    top: 5em;
-    right: -500px; 
-    width: 400px;
-    height: 100%;
-    background-color:hsla(221, 82%, 60%, 0.395);
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: right 0.3s ease-in-out;
-  }
+  position: fixed;
+  top: 0;
+  right: 0; /* Adjusted for better visibility initially */
+  width: 400px;
+  height: 100%;
+  background: linear-gradient(
+    to left, 
+    hsla(221, 89%, 69%, 0.97),
+    hsla(220, 9%, 93%, 0.87)
+  );
+  box-shadow: -2px 0 5px rgba(240, 237, 237, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-content {
+  text-align: center;
+}
+
+.about-content h3 {
+  font-size: 30px;
+  color: #000000;
+}
+
+.about-content p {
+  font-size: 18px;
+  color: #000000;
+}
+
+.about-buttons {
   
-  .about-container:hover {
-    right: 0; /* Slide in on hover */
-  }
+  display: flex;
+  margin-top: 10px;
+  gap: 10px;
+
   
-  .about-content {
-    text-align: left;
-  }
-  
-  .about-content h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-  }
-  
-  .about-content p {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #666;
-  }
-  
-  .about-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-    border-radius: 10px;
-  }
-  
-  .about-buttons button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .start-now {
-    background-color: #000;
-    color: #fff;
-  }
-  
-  .log-in {
-    background-color: transparent;
-    border: 1px solid #000;
-    color: #000;
-  }
-  .hover-area {
-    position: fixed;
-    top: 5em;
-    right: 0;
-    width: 100px; /* Adjust width as needed */
-    height: 100%;
-    cursor: pointer;
-  }
-  
-  .about-container:hover,
-  .hover-area:hover + .about-container {
-    right: 0;
-  }
+}
+
+.about-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; 
+  font-size: 12px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
+}
+
+.start-now {
+  background-color: #000000;
+  color: #fff;
+}
+
+.start-now:hover {
+  background-color: #444; /* Darker background on hover */
+}
+
+.log-in {
+  background-color: transparent;
+  border: 1px solid #000;
+  color: #000;
+}
+
+.log-in:hover {
+  background-color: #000; /* Background color on hover */
+  color: #fff; /* Text color on hover */
+}

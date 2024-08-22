@@ -11,7 +11,7 @@
 }
   
 .login-dialog {
-    background-color: hsla(221, 82%, 60%, 0.395); 
+    background-color: hsl(0, 0%, 100%);
     padding: 30px; 
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -19,6 +19,8 @@
     width: 100%;
     position: relative;
     text-align: center;
+   
+
 }
   
 h2 {
@@ -44,15 +46,14 @@ input {
     padding: 12px 10px;
     margin: 10px 0;
     border: none;
-    border-bottom: 2px solid #f5e6e4; 
+    border-bottom: 2px solid hsla(221, 82%, 60%, 0.395);
     font-size: 1em;
     background-color: transparent; 
     outline: none; /
 }
 
 input:focus {
-    border-bottom: 2px solid #d8d8d8; 
-    outline: none;
+    border-bottom: 2px solid hsl(221, 85%, 59%);
 }
 
 .forgot-password {
@@ -69,7 +70,7 @@ input:focus {
     color: #000000;
     padding: 10px;
     border-radius: 15px;
-    width: 100%;
+    width: 80%;
     cursor: pointer;
     font-size: 1.1em;
     margin-bottom: 10px;

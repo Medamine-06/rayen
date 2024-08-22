@@ -7,7 +7,7 @@ function Buttons(props) {
       props.onClick();
     }
   }
-
+  
   return (
     <button onClick={updateWeekAndYear}>
       {props.icon}
