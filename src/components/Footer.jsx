@@ -1,4 +1,4 @@
-import axiaLogo from './assets/axia.png'
+import axiaLogo from '../assets/axia.png'
 function Footer(){
     return(
         <footer className='footer'>

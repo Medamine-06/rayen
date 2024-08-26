@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import DateOfHeader from './DateOfHeader';
-import Buttons from './Buttons';
-import pic from './assets/utilisateur.png';
-import LoginDialog from './LoginDialog';
-import About from './About'; // Import About component
+import DateOfHeader from '../components/DateOfHeader';
+import Buttons from '../components/Buttons';
+import pic from '../assets/utilisateur.png';
+import LoginDialog from '../components/LoginDialog';
+import About from '../components/About'; 
 
 function Header(props) {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);

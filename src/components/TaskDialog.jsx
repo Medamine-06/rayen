@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './TaskDialog.css';
+import '../styles/TaskDialog.css';
 
 const TaskDialog = ({ task, onSave, onClose }) => {
   const [newTask, setNewTask] = useState(task);

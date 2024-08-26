@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LoginDialog.css';
+import '../styles/LoginDialog.css';
 
 const LoginDialog = ({ onClose }) => {
   const [email, setEmail] = useState('');

@@ -8,7 +8,6 @@ const Textarea  = ({ value, onChange, onClick, placeholder }) => {
       onChange={onChange}
       onClick={onClick}
       placeholder={placeholder}
-      
       className="textarea" 
     />
   );

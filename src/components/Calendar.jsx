@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Calendar.css';
-import TaskDialog from './TaskDialog';
-import Textarea from './Textarea';
+import '../styles/Calendar.css';
+import TaskDialog from '../components/TaskDialog';
+import Textarea from '../components/Textarea';
 
 const Calendar = (props) => {
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

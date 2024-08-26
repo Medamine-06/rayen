@@ -1,8 +1,8 @@
 import React from 'react';
-import './About.css';
-import pic from './assets/aboutaxia.jpg';
+import '../styles/About.css';
+import pic from '../assets/aboutaxia.jpg';
 import {useState} from 'react';
-import LoginDialog from './LoginDialog';
+import LoginDialog from '../components/LoginDialog';
 
 function About ({ onClose }) {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
@@ -41,5 +41,4 @@ function About ({ onClose }) {
     
   );
 }
-
 export default About;
