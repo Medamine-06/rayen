@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 const Textarea  = ({ value, onChange, onClick, placeholder }) => {
   return (
     <textarea

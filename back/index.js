@@ -34,12 +34,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/tasks', tasks); 
-app.use(express.static('dist'));
-
-// Define your dynamic routes after the static middleware
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-});
+// app.use(express.static('dist'));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+// });
 
 app.listen(process.env.PORT || 3000, function () {
   console.log(`Server started on localhost port ${process.env.PORT || 3000}`);

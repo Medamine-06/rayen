@@ -5,14 +5,32 @@ const LoginDialog = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
-    
-    console.log('Email:', email, 'Password:', password);
-    // Fermez la boîte de dialogue après la connexion
-    onClose();
-  };
+  const handleLogin = async () => {
+  
+    try {
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-  // Fonction pour détecter les clics en dehors de la boîte de dialogue
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log(data);
+        onClose(); // Close the dialog on successful login
+      } else {
+        console.error(data.message);
+        alert('Login failed: ' + data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
   const handleClickOutside = (e) => {
     if (e.target.className === 'login-dialog-overlay') {
       onClose();
@@ -23,26 +41,22 @@ const LoginDialog = ({ onClose }) => {
     <div className="login-dialog-overlay" onClick={handleClickOutside}>
       <div className="login-dialog">
         <h2>Hello, welcome back!</h2>
-        <button className="signup-button">Sign up</button>
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
+        
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <div className="forgot-password">Forgot password?</div>
-        <button className="login-button" onClick={handleLogin}>Let me in</button>
-        <div className="login-options">
-          <button className="google-login">Sign in with Google</button>
-          <button className="apple-login">Sign in with Apple</button>
-        </div>
-       
+
+        <button className='signup-button'>Signup</button>
+        <button className="login-button" onClick={handleLogin}> Let me in</button>
       </div>
     </div>
   );
