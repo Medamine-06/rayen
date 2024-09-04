@@ -9,6 +9,7 @@ function App() {
   
   const [week, setWeek] = useState(0);
   const [tasks, setTasks] = useState([]);
+  const [session, setSession] = useState(null);
   
 
   const fetchTasks = async (week) => {
@@ -24,8 +25,8 @@ function App() {
 
   return (
     <>
-      <Header week={week} setWeek={setWeek} fetchTasks={fetchTasks} />
-      <Calendar week={week} tasks={tasks} />
+      <Header week={week} session={session} setSession={setSession} setWeek={setWeek} fetchTasks={fetchTasks} />
+      <Calendar week={week} tasks={tasks} session={session}  />
       <Footer />
     </>
   )

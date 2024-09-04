@@ -7,14 +7,14 @@ const { checkLogin } = require("./userMiddleware");
 router.post("/register", async (req, res) => {
     try {
         const newUser = new User({
-            email: req.body.Email,
+            email: req.body.email,
             password: CryptoJS.AES.encrypt(
                 req.body.password,
                 process.env.CRYPTOJS_KEY
             ).toString(),
             isAdmin : req.body.isAdmin
         });
-
+        console.log(newUser);
 
 
         const savedUser = await newUser.save();
@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-      const user = await User.findOne({ email: req.body.Email });
+      const user = await User.findOne({ email: req.body.email });
       if (!user) {
           return res.status(401).json({ error: "Invalid Email" });
       }
@@ -48,7 +48,7 @@ router.post("/login", async (req, res) => {
           {
               id: user._id,
               isAdmin: user.isAdmin,
-              email: user.Email,
+              email: user.email,
           },
           process.env.JWT_SECRET,
           { expiresIn: "200d" }

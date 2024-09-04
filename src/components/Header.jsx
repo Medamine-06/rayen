@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import DateOfHeader from '../components/DateOfHeader';
 import Buttons from '../components/Buttons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import pic from '../assets/utilisateur.png';
 import LoginDialog from '../components/LoginDialog';
 import About from '../components/About'; 
 
-function Header({ week, setWeek, fetchTasks }) {
+function Header({ week, session, setSession, setWeek, fetchTasks }) {
   const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [isAboutDialogOpen, setIsAboutDialogOpen] = useState(false); // Initialize to false
 
@@ -21,6 +22,14 @@ function Header({ week, setWeek, fetchTasks }) {
     fetchTasks(newWeek); // Re-fetch tasks for the new week
   };
 
+  const handleLogout = () => {
+    // Remove the authentication token from local storage
+    localStorage.removeItem('authToken');
+    setSession(null);
+    // Optionally, you can also perform other logout-related tasks here, like redirecting or updating session state
+    console.log('Logged out successfully');
+  };
+
   return (
     <>
       <nav className="nav">
@@ -28,7 +37,7 @@ function Header({ week, setWeek, fetchTasks }) {
           <DateOfHeader week={week} />
         </div>
         <div className="right">
-          <Buttons icon={<img src={pic} alt="" className="icon" />} onClick={handleOpenLoginDialog} />
+          <Buttons icon={!session ? 'login':'logout' } onClick={!session ? handleOpenLoginDialog:handleLogout} > </Buttons>
           <Buttons icon="&#8942;" onClick={handleOpenAboutDialog} /> {/* Open AboutDialog on click */}
           <Buttons
             className="buttPrevious"
@@ -43,7 +52,7 @@ function Header({ week, setWeek, fetchTasks }) {
         </div>
       </nav>
 
-      {isLoginDialogOpen && <LoginDialog onClose={handleCloseLoginDialog} />}
+      {isLoginDialogOpen && <LoginDialog setSession={setSession} onClose={handleCloseLoginDialog} />}
       {isAboutDialogOpen && <About onClose={handleCloseAboutDialog} />}
     </>
   );

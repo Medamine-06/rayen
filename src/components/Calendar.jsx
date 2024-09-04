@@ -5,7 +5,7 @@ import Textarea from '../components/Textarea';
 import taskService from '../services/TaskService'; // Import task service
 import ObjectId from 'bson-objectid';
 
-const Calendar = ({ week }) => {
+const Calendar = ({ week , session}) => {
   
   const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -46,7 +46,9 @@ const Calendar = ({ week }) => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const allTasks = await taskService.getTasksByDateRange(startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0]);
+        let allTasks;
+        if (session) {allTasks = await taskService.getTasksByDateRangeByUserId(startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0],session.id);}
+        else allTasks = await taskService.getTasksByDateRange(startDate.toISOString().split('T')[0], endDate.toISOString().split('T')[0]);
         console.log("Fetched tasks:", allTasks);
 
         const numDays = 7;
@@ -74,7 +76,7 @@ const Calendar = ({ week }) => {
     };
 
     fetchTasks();
-  }, [startDate, endDate]);
+  }, [startDate, endDate, session]);
   const handleTextareaChange = (dayIndex, rowIndex) => (e) => {
     const updatedTask = { ...tasks[dayIndex].tasks[rowIndex], task: e.target.value };
     const updatedTasks = tasks.map((dayTasks, index) =>
@@ -99,6 +101,7 @@ const Calendar = ({ week }) => {
   const handleSaveTask = async (newTask) => {
     try {
       newTask.date = selectedDate;
+      newTask.userId = session ? session.id:null;
       if (activeDayIndex !== null && activeTaskIndex !== null) {
         let taskId = tasks[activeDayIndex]?.tasks[activeTaskIndex]?.id;
 
@@ -106,8 +109,9 @@ const Calendar = ({ week }) => {
           // New task
           taskId = ObjectId().toHexString();
           newTask.id = taskId;
-
-          const savedTask = await taskService.createTask(newTask);
+          let savedTask;
+          if (session) {savedTask = await taskService.createTaskByUserId(newTask);}
+          else savedTask = await taskService.createTask(newTask);
           console.log("Saved task:", savedTask);
 
           const updatedTasks = tasks.map((dayTasks, dayIndex) =>

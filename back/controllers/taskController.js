@@ -9,6 +9,18 @@ const getAllTasks = async (req, res) => {
   }
 };
 
+
+const getTasksByUser = async (req,res) => {
+  const userId = req.params.userId;
+  try {
+    const tasks = await Task.find({userId:userId});
+    res.json(tasks);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 const getTasksByDateRange = async (req, res) => {
   const { startDate, endDate } = req.query;
 
@@ -29,10 +41,50 @@ const getTasksByDateRange = async (req, res) => {
   }
 };
 
+const getTasksByDateRangeByUserId = async (req, res) => {
+  const userId = req.params.userId;
+  const { startDate, endDate } = req.query;
+
+  if (!startDate || !endDate) {
+    return res.status(400).json({ message: "Missing startDate or endDate" });
+  }
+
+  try {
+    const tasks = await Task.find({
+      userId:userId,
+      date: {
+        $gte: new Date(startDate),
+        $lte: new Date(endDate)
+      }
+    });
+    res.json(tasks);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const createTask = async (req, res) => {
   const { task, extraNotes, isDone, date } = req.body;
   try {
     const newTask = new Task({
+      task: task || '',
+      extraNotes: extraNotes || '',
+      isDone: isDone !== undefined ? isDone : false,
+      date
+    });
+    await newTask.save();
+    res.status(201).json(newTask);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+const createTaskByUserId = async (req, res) => {
+  const userId = req.params.userId;
+  const { task, extraNotes, isDone, date } = req.body;
+  try {
+    const newTask = new Task({
+      userId:userId,
       task: task || '',
       extraNotes: extraNotes || '',
       isDone: isDone !== undefined ? isDone : false,
@@ -68,4 +120,4 @@ const updateTask = async (req, res) => {
   }
 };
 
-module.exports = { getAllTasks, createTask, updateTask, getTasksByDateRange };
+module.exports = { getAllTasks, createTask, updateTask, getTasksByDateRange, getTasksByUser, createTaskByUserId, getTasksByDateRangeByUserId };
